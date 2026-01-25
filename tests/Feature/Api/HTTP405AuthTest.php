@@ -15,63 +15,82 @@ beforeEach(function (): void {
 });
 
 describe('405 > Authorized', function (): void {
-    test('put > index api', function (): void {
-        $this->put(route('tasks.index', 1))
-            ->assertStatus(405);
-    });
-
-    test('put json > index api', function (): void {
-        $this->putJson(route('tasks.index', 1))
-            ->assertStatus(405);
-    });
-
-    test('delete > index api', function (): void {
-        $this->delete(route('tasks.index', 1))
-            ->assertStatus(405);
-    });
-
-    test('delete json > index api', function (): void {
-        $this->deleteJson(route('tasks.index', 1))
-            ->assertStatus(405);
-    });
-
-    test('post json > countByCreatedLastWeek api', function (): void {
-        $this->postJson(route('tasks.countByCreatedLastWeek', 1))
-            ->assertStatus(405);
-    });
-
-    test('post > countByCreatedLastWeek api', function (): void {
-        $this->post(route('tasks.countByCreatedLastWeek', 1))
-            ->assertStatus(405);
-    });
-
-    test('post json > show api', function (): void {
-        $this->postJson(route('tasks.show', 1))
-            ->assertStatus(405);
-    });
-
-    test('put json > post api', function (): void {
-        $this->putJson(route('tasks.store', 1))
-            ->assertStatus(405);
-    });
-
-    test('delete json > post api', function (): void {
-        $this->deleteJson(route('tasks.store', 1))
-            ->assertStatus(405);
-    });
-
-    test('post json > update api', function (): void {
-        $this->postJson(route('tasks.update', 1))
-            ->assertStatus(405);
-    });
-
-    test('post > delete api', function (): void {
-        $this->post(route('tasks.destroy', 1))
-            ->assertStatus(405);
-    });
-
-    test('post json > delete api', function (): void {
-        $this->postJson(route('tasks.destroy', 1))
-            ->assertStatus(405);
-    });
+    apiTestArray([
+        'put > index api' => [
+            'method' => 'PUT',
+            'route' => 'tasks.index',
+            'status' => 405,
+            'id' => 1,
+            'json' => false,
+        ],
+        'put json > index api' => [
+            'method' => 'PUT',
+            'route' => 'tasks.index',
+            'status' => 405,
+            'id' => 1,
+        ],
+        'delete > index api' => [
+            'method' => 'DELETE',
+            'route' => 'tasks.index',
+            'status' => 405,
+            'id' => 1,
+            'json' => false,
+        ],
+        'delete json > index api' => [
+            'method' => 'DELETE',
+            'route' => 'tasks.index',
+            'status' => 405,
+            'id' => 1,
+        ],
+        'post json > countByCreatedLastWeek api' => [
+            'method' => 'POST',
+            'route' => 'tasks.countByCreatedLastWeek',
+            'status' => 405,
+            'id' => 1,
+        ],
+        'post > countByCreatedLastWeek api' => [
+            'method' => 'POST',
+            'route' => 'tasks.countByCreatedLastWeek',
+            'status' => 405,
+            'id' => 1,
+            'json' => false,
+        ],
+        'post json > show api' => [
+            'method' => 'POST',
+            'route' => 'tasks.show',
+            'status' => 405,
+            'id' => 1,
+        ],
+        'put json > post api' => [
+            'method' => 'PUT',
+            'route' => 'tasks.store',
+            'status' => 405,
+            'id' => 1,
+        ],
+        'delete json > post api' => [
+            'method' => 'DELETE',
+            'route' => 'tasks.store',
+            'status' => 405,
+            'id' => 1,
+        ],
+        'post json > update api' => [
+            'method' => 'POST',
+            'route' => 'tasks.update',
+            'status' => 405,
+            'id' => 1,
+        ],
+        'post > delete api' => [
+            'method' => 'POST',
+            'route' => 'tasks.destroy',
+            'status' => 405,
+            'id' => 1,
+            'json' => false,
+        ],
+        'post json > delete api' => [
+            'method' => 'POST',
+            'route' => 'tasks.destroy',
+            'status' => 405,
+            'id' => 1,
+        ],
+    ]);
 });
