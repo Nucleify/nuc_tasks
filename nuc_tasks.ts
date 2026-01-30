@@ -1,9 +1,14 @@
 import type { App } from 'vue'
-
-import { NucTaskDashboard, NucTaskPage } from './atomic'
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
 
 export function registerNucTasks(app: App<Element>): void {
   app
-    .component('nuc-task-page', NucTaskPage)
-    .component('nuc-task-dashboard', NucTaskDashboard)
+    .component('nuc-task-page', defineAsyncComponent({
+      loader: () => import('./atomic/pages/index.vue'),
+      hydrate: hydrateOnVisible({ rootMargin: '500px' }),
+    }))
+    .component('nuc-task-dashboard', defineAsyncComponent({
+      loader: () => import('./atomic/templates/Dashboard.vue'),
+      hydrate: hydrateOnVisible({ rootMargin: '500px' }),
+    }))
 }
